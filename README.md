@@ -67,27 +67,51 @@ echo "nvidia-drm" | sudo tee -a /etc/initramfs-tools/modules
 sudo update-initramfs -u
 ```
 ## 7.Reboot your system:
-
-
+```bash
 sudo reboot
-Usage & Verification
+```
+# Usage & Verification
 Once rebooted, verify the installation.
-
 Check the GPU:
-
-Plaintext
+```bash
 nvidia-smi
-Check DRM Modesetting:
-
-Plaintext
+```
+###Check DRM Modesetting:
+```bash
 cat /sys/module/nvidia_drm/parameters/modeset
+```
 This must output Y.
 
-Verify Wayland Session:
-
-Plaintext
+### Verify Wayland Session:
+```bash
 echo $XDG_SESSION_TYPE
+```
 This should output wayland.
+
+## if you are on Kali's default XFCE desktop (which doesn't support Wayland well), you have two choices to actually see Wayland in action:
+
+### Option A: The GNOME Way (Most Stable)
+
+GNOME is the "gold standard" for NVIDIA + Wayland.
+
+Install GNOME:
+```bash
+sudo apt install kali-desktop-gnome
+```
+
+Reboot or Log Out.
+
+Switch Session: At the login screen, click your name, then click the Gear Icon in the bottom-right corner. Select "GNOME on Wayland"
+
+### Option B: The KDE Way (Most Customizable)
+Install KDE: 
+```bash
+sudo apt install kali-desktop-kde
+```
+log out or reboot the system
+
+Switch Session: Select "Plasma (Wayland)" from the session menu.
+
 
 
 
