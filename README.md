@@ -30,7 +30,7 @@ It ranges from changing/editing the repository to nuking broken drivers and inje
  1.Nukethe Broken State
   Clear out any interrupted package configurations and purge all existing NVIDIA packages:
 
-'''bash
+'''
 sudo dpkg --configure -a
 sudo apt purge "^nvidia-.*" "^libnvidia-.*"
 sudo apt autoremove --purge
