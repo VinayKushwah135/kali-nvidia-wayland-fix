@@ -24,65 +24,66 @@ Furthermore, even if you successfully install the driver, Wayland will not recog
 - **Wayland/DRM Enabler:** Automates the patching of `/etc/default/grub` and `/etc/initramfs-tools/modules`.
 
 
-1. Nuke the Broken State
+These are steps to fix broken NVIDIA drivers and configure Wayland on Kali Linux.
+It ranges from changing/editing the repository to nuking broken drivers and injecting DRM modesetting into Optimus/nvidia laptops.
+
+Nuke the Broken State
 Clear out any interrupted package configurations and purge all existing NVIDIA packages:
 
-Bash
+Plaintext
 sudo dpkg --configure -a
 sudo apt purge "^nvidia-.*" "^libnvidia-.*"
 sudo apt autoremove --purge
 sudo apt clean
-2. Update Sources & Install Headers
+Update Sources & Install Headers
 Ensure you are on the kali-rolling branch, then update and grab the headers for your specific kernel:
 
-Bash
+Plaintext
 sudo apt update && sudo apt full-upgrade -y
 sudo apt install linux-headers-$(uname -r)
-3. Install the Driver
+Install the Driver
 Install the driver, the X configuration tool, and the essential GSP firmware:
 
-Bash
+Plaintext
 sudo apt install nvidia-driver firmware-nvidia-gsp nvidia-xconfig
-4. Fix Wayland (DRM Modesetting)
-Wayland requires nvidia-drm.modeset=1. Add it to GRUB:
+Fix Wayland (DRM Modesetting)
+Wayland requires nvidia-drm.modeset=1. Edit GRUB:
 
-Bash
-# 1. Edit GRUB
+Plaintext
 sudo nano /etc/default/grub
-# Change GRUB_CMDLINE_LINUX_DEFAULT to include "nvidia-drm.modeset=1"
+Change GRUB_CMDLINE_LINUX_DEFAULT to include "nvidia-drm.modeset=1"
 
-# 2. Update GRUB
+Update GRUB:
+
+Plaintext
 sudo update-grub
+Force the module into early boot:
 
-# 3. Force the module into early boot
+Plaintext
 echo "nvidia-drm" | sudo tee -a /etc/initramfs-tools/modules
 sudo update-initramfs -u
+Reboot your system:
 
-# 4. Reboot your system
+Plaintext
 sudo reboot
-💻 Usage & Verification
-Once rebooted, verify the installation:
+Usage & Verification
+Once rebooted, verify the installation.
 
 Check the GPU:
 
-Bash
+Plaintext
 nvidia-smi
-You should see your GPU listed with Driver Version 550+.
-
 Check DRM Modesetting:
 
-Bash
+Plaintext
 cat /sys/module/nvidia_drm/parameters/modeset
 This must output Y.
 
 Verify Wayland Session:
-Log into a Wayland session (GNOME recommended) and run:
 
-Bash
+Plaintext
 echo $XDG_SESSION_TYPE
 This should output wayland.
-
-
 
 
 
