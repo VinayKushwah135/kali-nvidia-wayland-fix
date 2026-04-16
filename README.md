@@ -3,8 +3,7 @@
 ![Kali Linux](https://img.shields.io/badge/Kali_Linux-Rolling-blue?style=flat-square&logo=kalilinux)
 ![NVIDIA](https://img.shields.io/badge/NVIDIA-550%2B-76B900?style=flat-square&logo=nvidia)
 ![Bash](https://img.shields.io/badge/Script-Bash-4EAA25?style=flat-square&logo=gnu-bash)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
+
 
 If you've ever found yourself stuck in DKMS dependency hell, staring at `bad exit status: 2` errors, or wondering why Wayland is completely ignoring your RTX card on Kali Linux — you're in the right place. 
 
