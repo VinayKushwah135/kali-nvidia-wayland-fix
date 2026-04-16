@@ -23,14 +23,4 @@ Furthermore, even if you successfully install the driver, Wayland will not recog
 - **Modern Driver Stack:** Installs the 550+ driver series alongside the required GSP firmware.
 - **Wayland/DRM Enabler:** Automates the patching of `/etc/default/grub` and `/etc/initramfs-tools/modules`.
 
-## 🚀 Manual Installation Steps (The Proven Method)
 
-If you prefer to run the commands yourself, here is the exact sequence that works.
-
-### 1. Nuke the Broken State
-Clear out any interrupted `dpkg` installations and purge all existing NVIDIA packages:
-```bash
-sudo dpkg --configure -a
-sudo apt purge "^nvidia-.*" "^libnvidia-.*"
-sudo apt autoremove --purge
-sudo apt clean
