@@ -22,9 +22,12 @@ Furthermore, even if you successfully install the driver, Wayland will not recog
 - **Header Synchronization:** Ensures your Linux headers perfectly match your running kernel.
 - **Modern Driver Stack:** Installs the 550+ driver series alongside the required GSP firmware.
 - **Wayland/DRM Enabler:** Automates the patching of `/etc/default/grub` and `/etc/initramfs-tools/modules`.
-### 1. Nuke the Broken State
-Clear out any interrupted `dpkg` installations and purge all existing NVIDIA packages:
-```bash
+
+
+1. Nuke the Broken State
+Clear out any interrupted package configurations and purge all existing NVIDIA packages:
+
+Bash
 sudo dpkg --configure -a
 sudo apt purge "^nvidia-.*" "^libnvidia-.*"
 sudo apt autoremove --purge
@@ -78,5 +81,12 @@ Log into a Wayland session (GNOME recommended) and run:
 Bash
 echo $XDG_SESSION_TYPE
 This should output wayland.
+
+
+
+
+
+
+
 
 
