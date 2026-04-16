@@ -27,46 +27,48 @@ Furthermore, even if you successfully install the driver, Wayland will not recog
 These are steps to fix broken NVIDIA drivers and configure Wayland on Kali Linux.
 It ranges from changing/editing the repository to nuking broken drivers and injecting DRM modesetting into Optimus/nvidia laptops.
 
- 1.Nukethe Broken State
+ ## 1.Nuke the Broken State
   Clear out any interrupted package configurations and purge all existing NVIDIA packages:
-
-'''
+```bash
 sudo dpkg --configure -a
 sudo apt purge "^nvidia-.*" "^libnvidia-.*"
 sudo apt autoremove --purge
 sudo apt clean
-'''
+```
 
-Update Sources & Install Headers
+## 2.Update Sources & Install Headers
 Ensure you are on the kali-rolling branch, then update and grab the headers for your specific kernel:
-
-Plaintext
+```bash
 sudo apt update && sudo apt full-upgrade -y
 sudo apt install linux-headers-$(uname -r)
-Install the Driver
+```
+## 3.Install the Driver
 Install the driver, the X configuration tool, and the essential GSP firmware:
-
-Plaintext
+```bash
 sudo apt install nvidia-driver firmware-nvidia-gsp nvidia-xconfig
-Fix Wayland (DRM Modesetting)
+```
+## 4.Fix Wayland (DRM Modesetting)
 Wayland requires nvidia-drm.modeset=1. Edit GRUB:
 
-Plaintext
+```bash
 sudo nano /etc/default/grub
+```
+```bash
 Change GRUB_CMDLINE_LINUX_DEFAULT to include "nvidia-drm.modeset=1"
-
+```
+## 5. update the grub
 Update GRUB:
-
-Plaintext
+```bash
 sudo update-grub
-Force the module into early boot:
-
-Plaintext
+```
+## 6.Force the module into early boot:
+```bash
 echo "nvidia-drm" | sudo tee -a /etc/initramfs-tools/modules
 sudo update-initramfs -u
-Reboot your system:
+```
+## 7.Reboot your system:
 
-Plaintext
+
 sudo reboot
 Usage & Verification
 Once rebooted, verify the installation.
