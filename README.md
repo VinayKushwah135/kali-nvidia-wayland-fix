@@ -26,6 +26,16 @@ Furthermore, even if you successfully install the driver, Wayland will not recog
 These are steps to fix broken NVIDIA drivers and configure Wayland on Kali Linux.
 It ranges from changing/editing the repository to nuking broken drivers and injecting DRM modesetting into Optimus/nvidia laptops.
 
+## for the command procedureon terminal make sure to switch to root user , if you had no made the root user make sure to make it by this :
+### Set the password for root
+```bash
+sudo passwd
+```
+Switch to root:
+```bash
+sudo su
+```
+
  ## 1.Nuke the Broken State
   Clear out any interrupted package configurations and purge all existing NVIDIA packages:
 ```bash
