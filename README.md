@@ -56,6 +56,10 @@ sudo apt install linux-headers-$(uname -r)
 ─# sudo apt update                                                  
 sudo apt dist-upgrade -y
 ```
+### and then reboot it
+```bash
+reboot
+```
 
 ## 3.Install the Driver
 Install the driver, the X configuration tool, and the essential GSP firmware:
