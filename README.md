@@ -41,6 +41,12 @@ Ensure you are on the kali-rolling branch, then update and grab the headers for 
 sudo apt update && sudo apt full-upgrade -y
 sudo apt install linux-headers-$(uname -r)
 ```
+### if any errors shows in red theme about the linux headers just run this command
+``` bash
+─# sudo apt update                                                  
+sudo apt dist-upgrade -y
+```
+
 ## 3.Install the Driver
 Install the driver, the X configuration tool, and the essential GSP firmware:
 ```bash
